@@ -118,11 +118,22 @@
                 >{{ t("buttons.download") }}
               </div>
             </a>
+            <!-- PDF: open in JS PDF viewer; other files: open directly -->
+            <button
+              v-if="!req.isDir && isPdf"
+              class="button button--flat"
+              @click="openPdfViewer"
+            >
+              <div>
+                <i class="material-icons">picture_as_pdf</i
+                >{{ t("buttons.openFile") }}
+              </div>
+            </button>
             <a
               target="_blank"
               :href="inlineLink"
               class="button button--flat"
-              v-if="!req.isDir"
+              v-else-if="!req.isDir"
             >
               <div>
                 <i class="material-icons">open_in_new</i
@@ -311,7 +322,7 @@ import Item from "@/components/files/ListingItem.vue";
 import { useFileStore } from "@/stores/file";
 import { useLayoutStore } from "@/stores/layout";
 import { computed, inject, onMounted, onBeforeUnmount, ref, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { StatusError } from "@/api/utils";
 import { copy } from "@/utils/clipboard";
@@ -331,6 +342,7 @@ const $showSuccess = inject<IToastSuccess>("$showSuccess")!;
 const { t } = useI18n({});
 
 const route = useRoute();
+const router = useRouter();
 const fileStore = useFileStore();
 const layoutStore = useLayoutStore();
 
@@ -351,6 +363,10 @@ const icon = computed(() => {
   if (req.value.type === "video") return "movie";
   return "insert_drive_file";
 });
+
+const isPdf = computed(
+  () => req.value && !req.value.isDir && req.value.extension?.toLowerCase() === ".pdf"
+);
 
 const link = computed(() => (req.value ? api.getDownloadURL(req.value) : ""));
 const raw = computed(() => {
@@ -483,6 +499,13 @@ const linkSelected = () => {
         path: req.value.items[fileStore.selected[0]].path,
       })
     : "";
+};
+
+/** Navigate to the full-page JS PDF viewer for shared PDF files */
+const openPdfViewer = () => {
+  if (inlineLink.value) {
+    router.push({ path: "/share-pdf", query: { src: inlineLink.value } });
+  }
 };
 
 const copyToClipboard = (text: string) => {

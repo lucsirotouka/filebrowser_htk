@@ -33,6 +33,18 @@ export const useUploadStore = defineStore("upload", () => {
   // ACTIONS
   //
 
+  /**
+   * Check whether a filename's extension is in the allow-list.
+   * An empty allow-list means "all extensions are permitted".
+   */
+  const isExtensionAllowed = (filename: string): boolean => {
+    const allowed: string[] = window.FileBrowser?.AllowedUploadExtensions ?? [];
+    if (allowed.length === 0) return true;
+    const dotIdx = filename.lastIndexOf(".");
+    const ext = dotIdx >= 0 ? filename.slice(dotIdx).toLowerCase() : "";
+    return allowed.some((a: string) => a.toLowerCase() === ext);
+  };
+
   const upload = (
     path: string,
     name: string,
@@ -40,6 +52,16 @@ export const useUploadStore = defineStore("upload", () => {
     overwrite: boolean,
     type: ResourceType
   ) => {
+    // Skip files whose extension is not in the allow-list.
+    if (type !== "dir" && file !== null && !isExtensionAllowed(name)) {
+      $showError(
+        new Error(
+          `Upload rejected: file extension not allowed for "${name}".`
+        )
+      );
+      return;
+    }
+
     if (!hasActiveUploads() && !hasPendingUploads()) {
       window.addEventListener("beforeunload", beforeUnload);
       buttons.loading("upload");

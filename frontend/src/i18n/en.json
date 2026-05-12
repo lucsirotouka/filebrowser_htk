@@ -48,6 +48,9 @@
     "discardChanges": "Discard",
     "stopSearch": "Stop searching",
     "saveChanges": "Save changes",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Fit page",
     "editAsText": "Edit as Text",
     "increaseFontSize": "Increase font size",
     "decreaseFontSize": "Decrease font size",
@@ -280,7 +283,10 @@
     "userUpdated": "User updated!",
     "username": "Username",
     "users": "Users",
-    "currentPassword": "Your Current Password"
+    "currentPassword": "Your Current Password",
+    "allowedUploadExtensions": "Allowed Upload Extensions",
+    "allowedUploadExtensionsHelp": "Comma-separated list of allowed file extensions (e.g. .jpg, .png, .pdf). Leave empty to allow all file types.",
+    "allowedUploadExtensionsPlaceholder": ".jpg, .png, .pdf, ..."
   },
   "sidebar": {
     "diskUsed": "{used} of {total} used",

@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"io/fs"
 	"log"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -35,9 +36,25 @@ type Settings struct {
 	Shell                 []string            `json:"shell"`
 	Rules                 []rules.Rule        `json:"rules"`
 	MinimumPasswordLength uint                `json:"minimumPasswordLength"`
-	FileMode              fs.FileMode         `json:"fileMode"`
-	DirMode               fs.FileMode         `json:"dirMode"`
-	HideDotfiles          bool                `json:"hideDotfiles"`
+	FileMode                  fs.FileMode         `json:"fileMode"`
+	DirMode                   fs.FileMode         `json:"dirMode"`
+	HideDotfiles              bool                `json:"hideDotfiles"`
+	AllowedUploadExtensions   []string            `json:"allowedUploadExtensions"`
+}
+
+// IsUploadAllowed returns true when either no extensions are configured (allow all)
+// or the given filename's extension (lowercased) is in the allow-list.
+func (s *Settings) IsUploadAllowed(filename string) bool {
+	if len(s.AllowedUploadExtensions) == 0 {
+		return true
+	}
+	ext := strings.ToLower(filepath.Ext(filename))
+	for _, allowed := range s.AllowedUploadExtensions {
+		if ext == allowed {
+			return true
+		}
+	}
+	return false
 }
 
 // GetRules implements rules.Provider.

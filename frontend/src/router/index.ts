@@ -4,6 +4,7 @@ import Login from "@/views/Login.vue";
 import Layout from "@/views/Layout.vue";
 import Files from "@/views/Files.vue";
 import Share from "@/views/Share.vue";
+import SharePdfPreview from "@/views/SharePdfPreview.vue";
 import Users from "@/views/settings/Users.vue";
 import User from "@/views/settings/User.vue";
 import Settings from "@/views/Settings.vue";
@@ -20,6 +21,7 @@ import { login, validateLogin } from "@/utils/auth";
 const titles = {
   Login: "sidebar.login",
   Share: "buttons.share",
+  SharePdfPreview: "buttons.share",
   Files: "files.files",
   Settings: "sidebar.settings",
   ProfileSettings: "settings.profileSettings",
@@ -48,6 +50,11 @@ const routes = [
         component: Share,
       },
     ],
+  },
+  {
+    path: "/share-pdf",
+    name: "SharePdfPreview",
+    component: SharePdfPreview,
   },
   {
     path: "/files",

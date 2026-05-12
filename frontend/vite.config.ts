@@ -53,11 +53,14 @@ export default defineConfig(({ command }) => {
           },
           output: {
             manualChunks: (id) => {
+              // pdfjs and vue-pdf-embed in their own chunk (large, only loaded for PDFs)
+              if (id.includes("pdfjs-dist") || id.includes("vue-pdf-embed")) {
+                return "pdfjs";
               // bundle dayjs files in a single chunk
               // this avoids having small files for each locale
-              if (id.includes("dayjs/")) {
+              } else if (id.includes("dayjs/")) {
                 return "dayjs";
-                // bundle i18n in a separate chunk
+              // bundle i18n in a separate chunk
               } else if (id.includes("i18n/")) {
                 return "i18n";
               }

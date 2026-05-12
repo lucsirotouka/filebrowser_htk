@@ -48,8 +48,9 @@ func handleWithStaticData(w http.ResponseWriter, _ *http.Request, d *data, fSys 
 		"EnableThumbs":          d.server.EnableThumbnails,
 		"ResizePreview":         d.server.ResizePreview,
 		"EnableExec":            d.server.EnableExec,
-		"TusSettings":           d.settings.Tus,
-		"HideLoginButton":       d.settings.HideLoginButton,
+		"TusSettings":              d.settings.Tus,
+		"HideLoginButton":          d.settings.HideLoginButton,
+		"AllowedUploadExtensions":  d.settings.AllowedUploadExtensions,
 	}
 
 	if d.settings.Branding.Files != "" {

@@ -47,6 +47,9 @@
     "stopSearch": "停止搜索",
     "saveChanges": "保存更改",
     "editAsText": "以文本形式编辑",
+    "zoomIn": "放大",
+    "zoomOut": "缩小",
+    "resetZoom": "适应页面",
     "increaseFontSize": "增大字体大小",
     "decreaseFontSize": "减小字体大小",
     "overrideAll": "Replace all files in destination folder",
@@ -278,7 +281,10 @@
     "userUpdated": "用户已更新！",
     "username": "用户名",
     "users": "用户",
-    "currentPassword": "您当前的密码"
+    "currentPassword": "您当前的密码",
+    "allowedUploadExtensions": "允许上传的文件扩展名",
+    "allowedUploadExtensionsHelp": "允许上传的文件扩展名列表（逗号分隔，例如 .jpg, .png, .pdf）。留空表示允许所有文件类型。",
+    "allowedUploadExtensionsPlaceholder": ".jpg, .png, .pdf, ..."
   },
   "sidebar": {
     "diskUsed": "{used} of {total} used",

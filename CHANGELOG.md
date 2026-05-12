@@ -2,8 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
-## [2.63.3](https://github.com/filebrowser/filebrowser/compare/v2.63.2...v2.63.3) (2026-05-05)
+Please note that all the versions with the "htk" suffix are completely coded by Claude.
 
+## 2.63.4-htk (2026-05-11)
+
+### Features
+
+* Add file extension restriction. Administrator users may restrict the extension in the file name user can upload in Global settings. **PLEASE NOTE** that this is **NOT A file format detecting mechanism** and could be easily bypassed.
+
+* Add PDF file online viewing in both the file manager and file sharing page.
+
+* Only English, Simplified Chinese and Traditional Chinese i18n files are updated. (Claude decided so.)
+
+## [2.63.3](https://github.com/filebrowser/filebrowser/compare/v2.63.2...v2.63.3) (2026-05-05)
 
 ### Bug Fixes
 

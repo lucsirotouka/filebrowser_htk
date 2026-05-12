@@ -153,6 +153,17 @@
               />
             </p>
           </div>
+
+          <h3>{{ t("settings.allowedUploadExtensions") }}</h3>
+          <p class="small">{{ t("settings.allowedUploadExtensionsHelp") }}</p>
+          <p>
+            <input
+              class="input input--block"
+              type="text"
+              v-model="allowedExtensionsInput"
+              :placeholder="t('settings.allowedUploadExtensionsPlaceholder')"
+            />
+          </p>
         </div>
 
         <div class="card-action">
@@ -296,6 +307,20 @@ const formattedChunkSize = computed({
   },
 });
 
+// Comma-separated string binding for allowedUploadExtensions
+const allowedExtensionsInput = computed({
+  get(): string {
+    return (settings.value?.allowedUploadExtensions ?? []).join(", ");
+  },
+  set(value: string) {
+    if (!settings.value) return;
+    settings.value.allowedUploadExtensions = value
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s !== "");
+  },
+});
+
 // Define funcs
 const capitalize = (name: string, where: string | RegExp = "_") => {
   if (where === "caps") where = /(?=[A-Z])/;
@@ -341,7 +366,7 @@ const save = async () => {
   newSettings.shell = shellValue.value
     .trim()
     .split(" ")
-    .filter((s) => s !== "");
+    .filter((s: string) => s !== "");
 
   if (newSettings.branding.theme !== getTheme()) {
     setTheme(newSettings.branding.theme);
@@ -349,6 +374,10 @@ const save = async () => {
 
   try {
     await api.update(newSettings);
+    // Immediately update the in-memory FileBrowser config so the new
+    // extension allow-list takes effect without a page reload.
+    window.FileBrowser.AllowedUploadExtensions =
+      newSettings.allowedUploadExtensions ?? [];
     $showSuccess(t("settings.settingsUpdated"));
   } catch (e: any) {
     $showError(e);

@@ -135,6 +135,11 @@ func resourcePostHandler(fileCache FileCache) handleFunc {
 			return errToStatus(err), err
 		}
 
+		// Check if the file extension is allowed.
+		if !d.settings.IsUploadAllowed(filepath.Base(r.URL.Path)) {
+			return http.StatusForbidden, fmt.Errorf("file extension not allowed: %s", filepath.Ext(r.URL.Path))
+		}
+
 		file, err := files.NewFileInfo(&files.FileOptions{
 			Fs:         d.user.Fs,
 			Path:       r.URL.Path,

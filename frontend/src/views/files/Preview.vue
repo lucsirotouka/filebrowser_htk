@@ -1,8 +1,8 @@
 <template>
   <div
     id="previewer"
-    @touchmove.prevent.stop
-    @wheel.prevent.stop
+    @touchmove="isPdf ? undefined : $event.preventDefault()"
+    @wheel="isPdf ? undefined : $event.preventDefault()"
     @mousemove="toggleNavigation"
     @touchstart="toggleNavigation"
   >
@@ -124,7 +124,18 @@
           :options="videoOptions"
         >
         </VideoPlayer>
-        <object v-else-if="isPdf" class="pdf" :data="previewUrl"></object>
+        <Suspense v-else-if="isPdf">
+          <PdfViewer :src="previewUrl" />
+          <template #fallback>
+            <div class="loading">
+              <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+              </div>
+            </div>
+          </template>
+        </Suspense>
         <div v-else-if="fileStore.req?.type == 'blob'" class="info">
           <div class="title">
             <i class="material-icons">feedback</i>
@@ -195,7 +206,20 @@ import ExtendedImage from "@/components/files/ExtendedImage.vue";
 import VideoPlayer from "@/components/files/VideoPlayer.vue";
 import CsvViewer from "@/components/files/CsvViewer.vue";
 import { VueReader } from "vue-reader";
-import { computed, inject, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import {
+  computed,
+  defineAsyncComponent,
+  inject,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
+
+// Lazy-load PdfViewer so pdfjs-dist is split into its own chunk
+const PdfViewer = defineAsyncComponent(
+  () => import("@/components/files/PdfViewer.vue")
+);
 import { useRoute, useRouter } from "vue-router";
 import type { Rendition } from "epubjs";
 import { getTheme } from "@/utils/theme";

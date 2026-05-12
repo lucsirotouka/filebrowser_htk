@@ -37,3 +37,8 @@ build/
 
 default.nix
 Dockerfile.dev
+
+# Claude generated files
+build_bins.ps1
+filebrowser-linux-amd64
+filebrowser-win32.exe
