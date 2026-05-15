@@ -42,6 +42,7 @@
     "update": "更新",
     "upload": "上传",
     "openFile": "打开文件",
+    "clickToEnlarge": "点击放大",
     "openDirect": "View raw",
     "discardChanges": "放弃更改",
     "stopSearch": "停止搜索",
@@ -60,6 +61,7 @@
   "download": {
     "downloadFile": "下载文件",
     "downloadFolder": "下载文件夹",
+    "packDownloadAll": "打包下载所有文件",
     "downloadSelected": "下载已选"
   },
   "upload": {
@@ -284,7 +286,8 @@
     "currentPassword": "您当前的密码",
     "allowedUploadExtensions": "允许上传的文件扩展名",
     "allowedUploadExtensionsHelp": "允许上传的文件扩展名列表（逗号分隔，例如 .jpg, .png, .pdf）。留空表示允许所有文件类型。",
-    "allowedUploadExtensionsPlaceholder": ".jpg, .png, .pdf, ..."
+    "allowedUploadExtensionsPlaceholder": ".jpg, .png, .pdf, ...",
+    "hideShareQRCode": "在分享页面隐藏二维码"
   },
   "sidebar": {
     "diskUsed": "{used} of {total} used",

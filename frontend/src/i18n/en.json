@@ -44,6 +44,7 @@
     "update": "Update",
     "upload": "Upload",
     "openFile": "Open file",
+    "clickToEnlarge": "Click to enlarge",
     "openDirect": "View raw",
     "discardChanges": "Discard",
     "stopSearch": "Stop searching",
@@ -62,6 +63,7 @@
   "download": {
     "downloadFile": "Download File",
     "downloadFolder": "Download Folder",
+    "packDownloadAll": "Pack & Download All Files",
     "downloadSelected": "Download Selected"
   },
   "upload": {
@@ -286,7 +288,8 @@
     "currentPassword": "Your Current Password",
     "allowedUploadExtensions": "Allowed Upload Extensions",
     "allowedUploadExtensionsHelp": "Comma-separated list of allowed file extensions (e.g. .jpg, .png, .pdf). Leave empty to allow all file types.",
-    "allowedUploadExtensionsPlaceholder": ".jpg, .png, .pdf, ..."
+    "allowedUploadExtensionsPlaceholder": ".jpg, .png, .pdf, ...",
+    "hideShareQRCode": "Hide QR code on share pages"
   },
   "sidebar": {
     "diskUsed": "{used} of {total} used",

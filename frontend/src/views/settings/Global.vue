@@ -24,6 +24,11 @@
           </p>
 
           <p>
+            <input type="checkbox" v-model="settings.hideShareQRCode" />
+            {{ t("settings.hideShareQRCode") }}
+          </p>
+
+          <p>
             <label class="small">{{ t("settings.userHomeBasePath") }}</label>
             <input
               class="input input--block"

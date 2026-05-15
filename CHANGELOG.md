@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file. See [commit
 
 Please note that all the versions with the "htk" suffix are completely coded by Claude.
 
+## 2.63.4-htk-2 (2026-05-15)
+
+### Features
+
+* Add option to globally hide QRcode in the sharing page.
+
+* Add link to directly view the file itself when the shared object is a folder.
+
 ## 2.63.4-htk (2026-05-11)
 
 ### Features

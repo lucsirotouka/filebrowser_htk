@@ -23,6 +23,7 @@ type settingsData struct {
 	Shell                   []string              `json:"shell"`
 	Commands                map[string][]string   `json:"commands"`
 	AllowedUploadExtensions []string              `json:"allowedUploadExtensions"`
+	HideShareQRCode         bool                  `json:"hideShareQRCode"`
 }
 
 var settingsGetHandler = withAdmin(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
@@ -40,6 +41,7 @@ var settingsGetHandler = withAdmin(func(w http.ResponseWriter, r *http.Request, 
 		Shell:                   d.settings.Shell,
 		Commands:                d.settings.Commands,
 		AllowedUploadExtensions: d.settings.AllowedUploadExtensions,
+		HideShareQRCode:         d.settings.HideShareQRCode,
 	}
 
 	return renderJSON(w, r, data)
@@ -87,6 +89,7 @@ var settingsPutHandler = withAdmin(func(_ http.ResponseWriter, r *http.Request, 
 	d.settings.Commands = req.Commands
 	d.settings.HideLoginButton = req.HideLoginButton
 	d.settings.AllowedUploadExtensions = normalizeExtensions(req.AllowedUploadExtensions)
+	d.settings.HideShareQRCode = req.HideShareQRCode
 
 	err = d.store.Settings.Save(d.settings)
 	return errToStatus(err), err

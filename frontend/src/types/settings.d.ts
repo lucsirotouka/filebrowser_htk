@@ -12,6 +12,7 @@ interface ISettings {
   shell: string[];
   commands: SettingsCommand;
   allowedUploadExtensions: string[];
+  hideShareQRCode: boolean;
 }
 
 interface SettingsDefaults {

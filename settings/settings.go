@@ -22,24 +22,25 @@ type AuthMethod string
 
 // Settings contain the main settings of the application.
 type Settings struct {
-	Key                   []byte              `json:"key"`
-	Signup                bool                `json:"signup"`
-	HideLoginButton       bool                `json:"hideLoginButton"`
-	CreateUserDir         bool                `json:"createUserDir"`
-	UserHomeBasePath      string              `json:"userHomeBasePath"`
-	Defaults              UserDefaults        `json:"defaults"`
-	AuthMethod            AuthMethod          `json:"authMethod"`
-	LogoutPage            string              `json:"logoutPage"`
-	Branding              Branding            `json:"branding"`
-	Tus                   Tus                 `json:"tus"`
-	Commands              map[string][]string `json:"commands"`
-	Shell                 []string            `json:"shell"`
-	Rules                 []rules.Rule        `json:"rules"`
-	MinimumPasswordLength uint                `json:"minimumPasswordLength"`
-	FileMode                  fs.FileMode         `json:"fileMode"`
-	DirMode                   fs.FileMode         `json:"dirMode"`
-	HideDotfiles              bool                `json:"hideDotfiles"`
-	AllowedUploadExtensions   []string            `json:"allowedUploadExtensions"`
+	Key                     []byte              `json:"key"`
+	Signup                  bool                `json:"signup"`
+	HideLoginButton         bool                `json:"hideLoginButton"`
+	CreateUserDir           bool                `json:"createUserDir"`
+	UserHomeBasePath        string              `json:"userHomeBasePath"`
+	Defaults                UserDefaults        `json:"defaults"`
+	AuthMethod              AuthMethod          `json:"authMethod"`
+	LogoutPage              string              `json:"logoutPage"`
+	Branding                Branding            `json:"branding"`
+	Tus                     Tus                 `json:"tus"`
+	Commands                map[string][]string `json:"commands"`
+	Shell                   []string            `json:"shell"`
+	Rules                   []rules.Rule        `json:"rules"`
+	MinimumPasswordLength   uint                `json:"minimumPasswordLength"`
+	FileMode                fs.FileMode         `json:"fileMode"`
+	DirMode                 fs.FileMode         `json:"dirMode"`
+	HideDotfiles            bool                `json:"hideDotfiles"`
+	AllowedUploadExtensions []string            `json:"allowedUploadExtensions"`
+	HideShareQRCode         bool                `json:"hideShareQRCode"`
 }
 
 // IsUploadAllowed returns true when either no extensions are configured (allow all)

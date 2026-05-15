@@ -42,6 +42,7 @@
     "update": "更新",
     "upload": "上傳",
     "openFile": "開啟檔案",
+    "clickToEnlarge": "點擊放大",
     "openDirect": "View raw",
     "discardChanges": "放棄變更",
     "stopSearch": "Stop searching",
@@ -60,6 +61,7 @@
   "download": {
     "downloadFile": "下載檔案",
     "downloadFolder": "下載資料夾",
+    "packDownloadAll": "打包下載所有檔案",
     "downloadSelected": "下載已選擇"
   },
   "upload": {
@@ -284,7 +286,8 @@
     "currentPassword": "Your Current Password",
     "allowedUploadExtensions": "允許上傳的副檔名",
     "allowedUploadExtensionsHelp": "允許上傳的副檔名列表（逗號分隔，例如 .jpg, .png, .pdf）。留空表示允許所有檔案類型。",
-    "allowedUploadExtensionsPlaceholder": ".jpg, .png, .pdf, ..."
+    "allowedUploadExtensionsPlaceholder": ".jpg, .png, .pdf, ...",
+    "hideShareQRCode": "在分享頁面隱藏二維碼"
   },
   "sidebar": {
     "help": "幫助",

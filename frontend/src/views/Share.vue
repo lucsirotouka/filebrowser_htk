@@ -115,7 +115,7 @@
             >
               <div>
                 <i class="material-icons">file_download</i
-                >{{ t("buttons.download") }}
+                >{{ req.isDir ? t("download.packDownloadAll") : t("buttons.download") }}
               </div>
             </a>
             <!-- PDF: open in JS PDF viewer; other files: open directly -->
@@ -141,14 +141,14 @@
               </div>
             </a>
             <qrcode-vue
-              v-if="req.isDir"
+              v-if="req.isDir && !hideShareQRCode"
               :value="link"
               :size="100"
               level="M"
             ></qrcode-vue>
           </div>
           <div v-if="!req.isDir" class="share__box__element share__box__center">
-            <qrcode-vue :value="link" :size="200" level="M"></qrcode-vue>
+            <qrcode-vue v-if="!hideShareQRCode" :value="link" :size="200" level="M"></qrcode-vue>
           </div>
           <div
             v-if="req.isDir"
@@ -164,7 +164,7 @@
           >
             <a
               target="_blank"
-              :href="raw"
+              :href="inlineRaw"
               class="button button--flat"
               v-if="
                 !fileStore.multiple &&
@@ -173,7 +173,7 @@
               "
               style="height: 12em; padding: 0; margin: 0"
             >
-              <img style="height: 12em" :src="raw" />
+              <img style="height: 12em" :src="inlineRaw" />
             </a>
             <div
               v-else-if="
@@ -241,6 +241,24 @@
               >folder
             </i>
             <i v-else class="material-icons">call_to_action</i>
+          </div>
+          <!-- "点击放大"链接：选中单个非文件夹文件时显示 -->
+          <div
+            v-if="
+              req.isDir &&
+              fileStore.selectedCount === 1 &&
+              req.items[fileStore.selected[0]] &&
+              !req.items[fileStore.selected[0]].isDir
+            "
+            class="share__box__element share__box__center"
+          >
+            <a
+              target="_blank"
+              :href="inlineRaw"
+              class="button button--flat"
+            >
+              {{ t('buttons.clickToEnlarge') }}
+            </a>
           </div>
         </div>
         <div
@@ -326,6 +344,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { StatusError } from "@/api/utils";
 import { copy } from "@/utils/clipboard";
+import { hideShareQRCode } from "@/utils/constants";
 
 const error = ref<StatusError | null>(null);
 const showLimit = ref<number>(100);
@@ -374,6 +393,13 @@ const raw = computed(() => {
   return createURL(
     `api/public/dl/${hash.value}${req.value.items[fileStore.selected[0]].path}`,
     { token: token.value }
+  );
+});
+const inlineRaw = computed(() => {
+  if (!req.value || !req.value.items[fileStore.selected[0]]) return "";
+  return createURL(
+    `api/public/dl/${hash.value}${req.value.items[fileStore.selected[0]].path}`,
+    { token: token.value, inline: "true" }
   );
 });
 const inlineLink = computed(() =>

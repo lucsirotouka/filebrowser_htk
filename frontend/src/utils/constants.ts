@@ -22,6 +22,7 @@ const tusEndpoint = `/api/tus`;
 const hideLoginButton = window.FileBrowser.HideLoginButton;
 const allowedUploadExtensions: string[] =
   window.FileBrowser.AllowedUploadExtensions || [];
+const hideShareQRCode: boolean = window.FileBrowser.HideShareQRCode || false;
 
 export {
   name,
@@ -46,4 +47,5 @@ export {
   tusEndpoint,
   hideLoginButton,
   allowedUploadExtensions,
+  hideShareQRCode,
 };
