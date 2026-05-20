@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file. See [commit
 
 Please note that all the versions with the "htk" suffix are completely coded by Claude.
 
+## 2.63.4-htk-2.1 (2026-05-20)
+
+### Minor changes
+
+* Soft-removed "Copy download link" when creating share links due to specific business needs.
+
+    * It could be easily restored by uncommenting relavent lines in Share.vue.
+
+
 ## 2.63.4-htk-2 (2026-05-15)
 
 ### Features

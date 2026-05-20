@@ -33,6 +33,7 @@
                 <i class="material-icons">content_paste</i>
               </button>
             </td>
+            <!--
             <td class="small">
               <button
                 class="action"
@@ -44,6 +45,7 @@
                 <i class="material-icons">content_paste_go</i>
               </button>
             </td>
+          -->
             <td class="small">
               <button
                 class="action"
