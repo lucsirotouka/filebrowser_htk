@@ -29,6 +29,8 @@
     "rename": "重命名",
     "replace": "替换",
     "reportIssue": "报告问题",
+    "resumeTransfer": "恢复先前的传输",
+    "resumeTransferTooltip": "跳过所有冲突的文件，但在服务器上较小的除外（此处假设其传输已被中断）。",
     "save": "保存",
     "schedule": "计划",
     "search": "搜索",

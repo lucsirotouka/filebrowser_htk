@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
-Please note that all the versions with the "htk" suffix are completely coded by Claude.
+Please note that all the versions with the "htk" suffix are completely coded by Claude, except merging upstream updates.
+
+## 2.63.5-htk-2.1 (2026-05-25)
+
+* Merging upstream updates.
 
 ## 2.63.4-htk-2.1 (2026-05-20)
 
